@@ -60,7 +60,7 @@ class BrickFTP:
         ref = start_upload_resp_json['ref']
         upload_uri = start_upload_resp_json['upload_uri']
         with open(local_path, encoding=encoding) as input_file:
-            resp = requests.put(upload_uri, data=input_file.read())
+            resp = requests.put(upload_uri, data=input_file.read().encode(encoding))
             if not resp.ok:
                 raise BrickFTPError(
                     f'Failed to upload part. Resp: {resp.text}'
